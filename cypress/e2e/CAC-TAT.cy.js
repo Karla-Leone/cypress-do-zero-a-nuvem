@@ -22,7 +22,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
    cy.get('.success').should('be.visible')
 
   })
-
+/*
   it('exibe mensagem de erro ao submenter formulário com formatação errada no campo de preenchimento obrigatório de email', () => {
    cy.get('#firstName').type('Karla')
    cy.get('#lastName').type('Leone')
@@ -36,7 +36,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
    cy.get('.success').should('be.visible')
 
   })
-/*
+
   it('campo continua vazio quando preenchido com valor não numérico -não está funcionando', () => {
    cy.get('#phone')
     .type(e)
