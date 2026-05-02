@@ -22,7 +22,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
    cy.get('.success').should('be.visible')
 
   })
-/*
+
   it('exibe mensagem de erro ao submenter formulário com formatação errada no campo de preenchimento obrigatório de email', () => {
    cy.get('#firstName').type('Karla')
    cy.get('#lastName').type('Leone')
@@ -33,32 +33,31 @@ describe('Central de Atendimento ao Cliente TAT', () => {
    cy.get('#open-text-area').type('primeiro teste')     
    cy.contains('button', 'Enviar').click()
   
-   cy.get('.success').should('be.visible')
+   cy.get('.error').should('be.visible')
 
   })
 
   it('campo continua vazio quando preenchido com valor não numérico -não está funcionando', () => {
    cy.get('#phone')
-    .type(e)
+    .type('abc')
     .should('have.value', '')
 
   })
-
 
   it('exibe mensagem de erro ao submenter formulário sem informar número de telefone, após marcar checkbox, ref. ao dado', () => {
    cy.get('#firstName').type('Karla')
    cy.get('#lastName').type('Leone')
    cy.get('#email').type('leonekarla001@gmail.com')
-   cy.get('#phone').type('')
    cy.get('#support-type > :nth-child(2)').click()
    cy.get('[for="phone-checkbox"]').click()
-   cy.get('#open-text-area').type('primeiro teste')     
+   cy.get('#open-text-area').type('primeiro teste')
+     
    cy.contains('button', 'Enviar').click()
   
-   cy.get('.success').should('be.visible')
-
+   cy.get('.error').should('be.visible')
+ 
   })
-*/
+
   it('preenche e limpa os campos nome, sobrenome, email e telefone', () => {
    cy.get('#firstName')
    .type('Karla')
@@ -85,6 +84,7 @@ describe('Central de Atendimento ao Cliente TAT', () => {
    cy.get('.error').should('be.visible')
 
   })
+
 /*método que utiliza o comando que preenche os campos*/
   it('envia o formulário com sucesso usando um comando customizado', () => {
    cy.fillMandatoryFielsAndSubmit()
@@ -92,7 +92,6 @@ describe('Central de Atendimento ao Cliente TAT', () => {
    cy.get('.success').should('be.visible')
 
   })
-
 
 /*método que utiliza um objeto com uma variável*/
   it('envia o formulário com sucesso usando um comando customizado', () => {
@@ -110,11 +109,62 @@ describe('Central de Atendimento ao Cliente TAT', () => {
 
   })
 
-/*método que utiliza um objeto com uma variável*/ 
+/*método que utiliza um objeto com uma variável*/
   it('envia o formulário com sucesso usando um comando customizado', () => {
    cy.fillMandatoryFielsAndSubmit()
 
    cy.get('.success').should('be.visible')
 
   })
+
+/*método para selecionar uma opção pelo Texto exibido tela*/
+it('seleciona um produto (YouTube) por seu texto', () => {
+  cy.get('#product').select('YouTube')
+  .select('YouTube')
+  .should('have.value', 'youtube')
+})
+
+/*método para selecionar uma opção pelo Valor no HTML*/
+it('seleciona um produto (Mentoria) por seu valor', () => {
+  cy.get('#product').select('mentoria')
+  .select('mentoria')
+  .should('have.value', 'mentoria')
+})
+
+/*método para selecionar uma opção pelo Índice no HTML*/
+it('seleciona um produto (Blog) pelo Índice', () => {
+  cy.get('#product')
+  .select(1)
+  .should('have.value', 'blog')
+})
+
+
+/*método para marcar um tipo de atendimento checkbox "Feedback"*/
+it('marca o tipo de atendimento "Feedback"', () => {
+  cy.get('input[type="radio"][value="feedback"]')
+    .check()
+    .should('be.checked')
+})
+
+/*método para marcar todos os tipos de atendimento radio*/
+it('marca cada tipo de atendimento', () => {
+/*seleciona todos genericamente*/
+  cy.get('input[type="radio"]')
+    .each(typeOfService => {
+/*empacota e seleciona todos individualmente*/
+      cy.wrap(typeOfService)
+        .check()
+        .should('be.checked')
+    })  
+  })
+
+/*método para marcar todos os meios de contato checkbox genericamente*/
+it('marca ambos checkboxes, depois desmarca o último', () => {
+  cy.get('input[type="checkbox"]')
+  .check()
+/*desmarca o último checkbox selecionado*/
+  .last()
+  .uncheck()
+  .should('not.be.checked')
+})
 })
