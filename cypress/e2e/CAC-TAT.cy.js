@@ -23,10 +23,10 @@ describe('Central de Atendimento ao Cliente TAT', () => {
 
   })
 
-  it('exibe mensagem de erro ao submenter formulário com formatação errada no campo de preenchimento obrigatório de email', () => {
+  it.only('exibe mensagem de erro ao submenter formulário com formatação errada no campo de preenchimento obrigatório de email', () => {
    cy.get('#firstName').type('Karla')
    cy.get('#lastName').type('Leone')
-   cy.get('#email').type('leonekarla001,gmail.com')
+   cy.get('#email').type('leonekarla001.gmail.com')
    cy.get('#phone').type(219999999)
    cy.get('#support-type > :nth-child(2)').click()
    cy.get('[for="phone-checkbox"]').click()
