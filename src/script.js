@@ -34,8 +34,9 @@ document.querySelector('button[type="submit"]')
       return showAndHideErrorMessage()
     }
     if (!emailField.value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
-    //  return showAndHideErrorMessage()
-    }
+    //  return showAndHideErrorMessage() - comentar qdo estiver testando o cenário de email incorreto 
+      return showAndHideErrorMessage()
+  }
     firstNameField.value = ''
     lastNameField.value = ''
     emailField.value = ''

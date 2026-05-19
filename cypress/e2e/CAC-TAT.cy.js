@@ -1,6 +1,7 @@
 describe('Central de Atendimento ao Cliente TAT', () => {
   beforeEach(() => {
     cy.visit('./src/index.html')
+  //  cy.visit('https://www.amazon.com.br/')
 })
 
   it('verifica o título da aplicação', () => {
